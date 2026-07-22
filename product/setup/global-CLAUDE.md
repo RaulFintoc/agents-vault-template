@@ -1,9 +1,14 @@
+<!-- agents-vault-template:begin product -->
 # Product vault — capture all work as projects
 
 <!--
-  This is the GLOBAL instructions file for Claude Code. Copy it to
+  This is the GLOBAL instructions file for Claude Code. Copy it into
   ~/.claude/CLAUDE.md so Claude reads it at the start of EVERY session,
   no matter which folder you're working in. See the README for how.
+
+  Keep the agents-vault-template:begin/end marker lines — they let setup
+  (or Claude, via ONBOARDING.md) update this block in place later instead
+  of appending a duplicate.
 
   If you placed the vault somewhere other than ~/Documents/product-vault,
   change the paths below to match.
@@ -44,3 +49,4 @@ The vault itself is the `agents/` subfolder, and its guide is
 Prefer reusing an existing project over creating near-duplicates; create a new
 project only for a genuinely new thread of substantive work. If it's ambiguous
 which project a session belongs to, ask.
+<!-- agents-vault-template:end product -->
