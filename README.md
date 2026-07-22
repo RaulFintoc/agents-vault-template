@@ -2,10 +2,12 @@
 
 Starter kits for running your work with **Claude Code** and an **Obsidian vault** — one self-contained template per area. Pick the folder that matches your role, copy it to its home, and follow that folder's own `README.md`.
 
-| Area | Folder | Made for | Lives at |
-|---|---|---|---|
-| **Engineering** | [`eng/`](eng/) | Code repos + a vault of investigations, plans, and decisions across tickets | `~/repositories` |
-| **Product** | [`product/`](product/) | Specs, research, roadmap reviews, strategy, and meeting notes — no coding tools needed | `~/Documents/product-vault` |
+| Area | Folder | Made for |
+|---|---|---|
+| **Engineering** | [`eng/`](eng/) | Code repos + a vault of investigations, plans, and decisions across tickets |
+| **Product** | [`product/`](product/) | Specs, research, roadmap reviews, strategy, and meeting notes — no coding tools needed |
+
+Where a kit lives is up to you — you pick the folder during setup; the docs call it `<home>`.
 
 ## Easiest setup — let Claude do it
 
@@ -17,14 +19,16 @@ If you already have [Claude Code](https://docs.claude.com/en/docs/claude-code) i
 
 ## Manual setup
 
+First decide where the kit should live — any folder path works. Replace `<home>` below with the path you chose:
+
 ```bash
 git clone --depth 1 https://github.com/RaulFintoc/agents-vault-template /tmp/agents-vault-template
 
 # Engineering:
-cp -R /tmp/agents-vault-template/eng ~/repositories
+cp -R /tmp/agents-vault-template/eng <home>
 
 # Product:
-cp -R /tmp/agents-vault-template/product ~/Documents/product-vault
+cp -R /tmp/agents-vault-template/product <home>
 
 rm -rf /tmp/agents-vault-template
 ```

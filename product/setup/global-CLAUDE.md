@@ -10,22 +10,22 @@
   (or Claude, via ONBOARDING.md) update this block in place later instead
   of appending a duplicate.
 
-  If you placed the vault somewhere other than ~/Documents/product-vault,
-  change the paths below to match.
+  Replace every <home> placeholder below with the folder you chose for the
+  vault during setup.
 -->
 
-All my product work lives in an Obsidian vault at `~/Documents/product-vault`.
+All my product work lives in an Obsidian vault at `<home>`.
 The vault itself is the `agents/` subfolder, and its guide is
-`~/Documents/product-vault/agents/AGENTS.md`.
+`<home>/agents/AGENTS.md`.
 
 **At the start of every session, before substantive work:**
 
-1. **Read** `~/Documents/product-vault/agents/AGENTS.md` (do this even when the
+1. **Read** `<home>/agents/AGENTS.md` (do this even when the
    working directory is a code repo elsewhere). It defines the project types,
    templates, scaffolding scripts, naming, and frontmatter conventions — follow
    them.
 2. **Place the work in a project.** Look in
-   `~/Documents/product-vault/agents/projects/` for an existing project this
+   `<home>/agents/projects/` for an existing project this
    belongs to. If one fits, use it. If none fits, scaffold a new one with the
    right `--type` (see the vault guide's `new-project.sh`).
 3. **File the substantive output there** as the work happens — research

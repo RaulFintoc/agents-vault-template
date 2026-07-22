@@ -13,7 +13,7 @@ Ask which kit fits their role if it isn't obvious from their request:
 
 Then ask **where the vault should live**. The home folder is pure user input — there is no default; never pick a location for them or copy anything before they've answered. Help a non-technical user turn their answer ("in my Documents", "with my repos") into one concrete folder path, and confirm it back. Whatever they choose is `<home>` everywhere below. These steps assume macOS.
 
-The kit's files hardcode example paths — the global config snippet, the workspace and vault `AGENTS.md`s, and the kit `README.md`. After copying, rewrite those path references to `<home>`.
+After copying, personalize the kit's paths: replace the `<home>` placeholders in the kit `README.md` and the global config snippet with the chosen path, and rewrite the example paths in the workspace and vault `AGENTS.md`s to match it.
 
 ## 1. Copy the kit into place
 
@@ -33,7 +33,7 @@ The kit ships its snippet at `<home>/setup/global-CLAUDE.md`, wrapped in `<!-- a
 - No `~/.claude/CLAUDE.md` yet → create it with the snippet's full contents (`mkdir -p ~/.claude` first).
 - File exists **without** this area's markers → append the snippet at the bottom, separated by a blank line. Never modify the user's existing content.
 - File exists **with** this area's markers → replace everything between (and including) the markers with the new snippet.
-- Rewrite the paths inside the snippet to `<home>` before installing it (the shipped snippet carries example paths).
+- Replace the `<home>` placeholders inside the snippet with the chosen path before installing it — never install a block that still contains `<home>`.
 
 ## 3. Obsidian
 
