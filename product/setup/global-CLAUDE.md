@@ -1,26 +1,31 @@
+<!-- agents-vault-template:begin product -->
 # Product vault — capture all work as projects
 
 <!--
-  This is the GLOBAL instructions file for Claude Code. Copy it to
+  This is the GLOBAL instructions file for Claude Code. Copy it into
   ~/.claude/CLAUDE.md so Claude reads it at the start of EVERY session,
-  no matter which folder you're working in. See the README for how.
+  no matter which folder you're working in. See the repo's root README for how.
 
-  If you placed the vault somewhere other than ~/Documents/product-vault,
-  change the paths below to match.
+  Keep the agents-vault-template:begin/end marker lines — they let setup
+  (or Claude, via ONBOARDING.md) update this block in place later instead
+  of appending a duplicate.
+
+  Replace every <home> placeholder below with the folder you chose for the
+  vault during setup.
 -->
 
-All my product work lives in an Obsidian vault at `~/Documents/product-vault`.
+All my product work lives in an Obsidian vault at `<home>`.
 The vault itself is the `agents/` subfolder, and its guide is
-`~/Documents/product-vault/agents/AGENTS.md`.
+`<home>/agents/AGENTS.md`.
 
 **At the start of every session, before substantive work:**
 
-1. **Read** `~/Documents/product-vault/agents/AGENTS.md` (do this even when the
+1. **Read** `<home>/agents/AGENTS.md` (do this even when the
    working directory is a code repo elsewhere). It defines the project types,
    templates, scaffolding scripts, naming, and frontmatter conventions — follow
    them.
 2. **Place the work in a project.** Look in
-   `~/Documents/product-vault/agents/projects/` for an existing project this
+   `<home>/agents/projects/` for an existing project this
    belongs to. If one fits, use it. If none fits, scaffold a new one with the
    right `--type` (see the vault guide's `new-project.sh`).
 3. **File the substantive output there** as the work happens — research
@@ -44,3 +49,4 @@ The vault itself is the `agents/` subfolder, and its guide is
 Prefer reusing an existing project over creating near-duplicates; create a new
 project only for a genuinely new thread of substantive work. If it's ambiguous
 which project a session belongs to, ask.
+<!-- agents-vault-template:end product -->
