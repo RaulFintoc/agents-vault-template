@@ -30,13 +30,13 @@ agents/
   CLAUDE.md              # @AGENTS.md
   projects/
     YYYY-MM-<slug>/      # one folder per project
-      project.md         # overview + master frontmatter
+      <slug>_project.md  # overview + master frontmatter (e.g. mcp-movements_project.md)
       investigations/    # research notes, explorations, findings
       plans/             # plans handed to / produced by agents
       decisions/         # decisions made during the project
       documents/         # images, PDFs, human input, references
   templates/             # note templates — copy and rename when creating notes
-    project.md
+    project.md           # scaffolded by new-project.sh as <slug>_project.md
     investigation.md
     plan.md
     decision.md
@@ -51,6 +51,11 @@ agents/
 
 **Never use generic names like `investigation.md` or `decision.md`.** The folder
 already conveys the type. The filename must call out the **subject** of the note.
+
+The project overview note is no exception: name it **`<slug>_project.md`** —
+the project's folder slug (the `YYYY-MM-` prefix dropped) followed by the
+`_project.md` suffix, e.g. `mcp-movements_project.md`. `new-project.sh`
+creates it with this name; one per folder, unique vault-wide.
 
 Use descriptive, kebab-case names:
 
@@ -88,7 +93,7 @@ related: []           # wikilinks to other notes, e.g. ["[[use-redis-for-idempot
 
 ### Per-type additions
 
-**project.md**
+**`<slug>_project.md`** (the project overview)
 ```yaml
 owner: <name or @handle>
 repos: []             # repo names present in ~/repositories, e.g. [api, frontend]
@@ -214,13 +219,13 @@ bash ~/repositories/agents/scripts/new-project.sh <slug> \
 ```
 
 This creates `projects/YYYY-MM-<slug>/` with all subfolders and a pre-filled
-`project.md`. Add notes as work progresses — copy from `templates/` and give
-them descriptive names.
+`<slug>_project.md`. Add notes as work progresses — copy from `templates/` and
+give them descriptive names.
 
 ### During a project
 
 - Add notes to the right subfolder as work happens.
-- Keep `project.md` updated — especially `status`, `tickets`, and `repos`.
+- Keep the `<slug>_project.md` overview updated — especially `status`, `tickets`, and `repos`.
 - Log decisions as they are made (even small ones). Future context matters.
 - Embed or link supporting documents from `documents/`.
 

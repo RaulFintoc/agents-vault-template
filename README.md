@@ -65,7 +65,7 @@ bash agents/scripts/new-project.sh my-feature --tickets PROJ-3 --linear https://
 
 This creates `agents/projects/YYYY-MM-<slug>/` with subfolders
 (`investigations/`, `plans/`, `decisions/`, `documents/`) and a pre-filled
-`project.md`.
+`<slug>_project.md` overview.
 
 ### Add a repo
 
