@@ -134,11 +134,45 @@ file (or one file for tightly related decisions on the same day).
 |---|---|
 | `[[note-name]]` | Link to a note by filename (no extension) |
 | `[[note-name#Heading]]` | Link to a specific heading in a note |
+| `[[#Heading]]` | Link to a heading **in the same note** (no filename) |
 | `[[note-name\|label]]` | Link with a custom display label |
+| `[[#Heading\|label]]` | Same-note heading link with a custom label |
 
 Always use the descriptive filename (e.g. `[[use-redis-for-idempotency-keys]]`),
 not a generic one. Obsidian resolves vault-wide by filename; no path needed
-unless two notes share a name.
+unless two notes share a name. Project overviews are uniquely named per the
+`<slug>_project.md` convention, so link them by bare filename:
+`[[mcp-engine-deep-dive_project|label]]`. When two notes genuinely **do** share
+a name, disambiguate with a vault-relative path:
+`[[projects/2026-06-foo/note|label]]` — a bare `[[note]]` silently resolves to
+the wrong one.
+
+### Never link to memory files
+
+**Wikilinks must point only at notes inside this vault.** Do **not** `[[link]]`
+to agent memory files (the `~/.claude/.../memory/*.md` store — e.g.
+`[[user-preferences]]`, `[[project-payment-flows]]`). Memory lives
+outside the vault, so Obsidian can never resolve those links — they render as
+permanently broken. If you want to surface a fact that lives in memory, **write
+it into the note as prose** (and cite the source if useful), or link to a real
+vault note that covers it. The same applies to `related:` frontmatter — list only
+in-vault notes there.
+
+### Intra-document links — gotchas (don't write GitHub-style anchors)
+
+For jump links **within the same note** (e.g. a TL;DR pointing at a later
+section), use the Obsidian wikilink form `[[#Heading]]`, **not** the
+GitHub/Markdown anchor form `[label](#slugified-heading)`. Two reasons these
+bite:
+
+- **No slugs.** Obsidian resolves `#` links by the **exact heading text**, not a
+  lowercased-hyphenated slug. `[Slack history](#slack-history-bug-class)` is a
+  dead link; `[[#Slack history (bug class is recurring)|Slack history]]` works.
+  Copy the heading verbatim (parentheses and all) after the `#`.
+- **Escape the pipe inside tables.** A `|` is a table column separator, so the
+  alias pipe in a wikilink placed in a table cell must be escaped as `\|`:
+  `[[#Which callers actually hit the bug\|caller nuance]]`. Unescaped, it splits
+  the cell and breaks the table. (Outside tables, a plain `|` is fine.)
 
 ### Transclusion / embedding
 
