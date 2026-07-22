@@ -7,7 +7,15 @@ Starter kits for running your work with **Claude Code** and an **Obsidian vault*
 | **Engineering** | [`eng/`](eng/) | Code repos + a vault of investigations, plans, and decisions across tickets | `~/repositories` |
 | **Product** | [`product/`](product/) | Specs, research, roadmap reviews, strategy, and meeting notes — no coding tools needed | `~/Documents/product-vault` |
 
-## Getting started
+## Easiest setup — let Claude do it
+
+If you already have [Claude Code](https://docs.claude.com/en/docs/claude-code) installed, skip the manual steps entirely: open Terminal, run `claude`, and paste
+
+> Set me up with the **product** vault from https://github.com/RaulFintoc/agents-vault-template — fetch its ONBOARDING.md and follow it.
+
+(or **eng** for the engineering kit). Claude copies the kit to its home, updates your global `~/.claude/CLAUDE.md` so every future session knows about the vault, and walks you through opening it in Obsidian.
+
+## Manual setup
 
 ```bash
 git clone --depth 1 https://github.com/RaulFintoc/agents-vault-template /tmp/agents-vault-template

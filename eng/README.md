@@ -51,7 +51,13 @@ repositories/              ← workspace root (a copy of this eng/ folder)
 3. **No community plugins required.** Only Obsidian core plugins are configured.
    Mermaid diagrams render natively.
 
-4. Optionally enable **Obsidian Sync** (Settings → Sync) to keep the vault
+4. **Point every Claude Code session at the workspace**: merge
+   `setup/global-CLAUDE.md` into your `~/.claude/CLAUDE.md` (create the file
+   with its contents if you don't have one). Keep the
+   `agents-vault-template:begin/end` marker lines — they let a later setup
+   update the block in place.
+
+5. Optionally enable **Obsidian Sync** (Settings → Sync) to keep the vault
    backed up and in sync across machines.
 
 ---
