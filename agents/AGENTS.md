@@ -202,6 +202,26 @@ This lets you filter all notes for a ticket via Obsidian search:
 
 ---
 
+## Referencing source code (read the vault side-by-side with the editor)
+
+Notes that explain or investigate code **must** cite their sources as
+`path/to/file.ext:line` (or `:start-end` for ranges), with the path **relative to
+the repo root** (e.g. `app/services/payments/retry_service.rb:74-96`).
+The goal: a reader can keep the note open next to VSCode and jump straight to the
+code (`Cmd+P` → paste path, `Ctrl+G` → line).
+
+Rules:
+
+- **Every quoted code block** gets a reference line immediately above it (or
+  inline `# -> file:line` comments inside the block when quoting several spots).
+- Prose that names a method, action, or class should anchor it with `file:line`
+  the first time it appears.
+- Line numbers drift. State the repo snapshot date once (the note's `created`/
+  `updated`, or a one-line note up top), and always name the symbol
+  (method/action/class) as a stable anchor in case the line moved.
+- Use repo-root-relative paths, not absolute machine paths — they stay valid for
+  anyone who clones the repo and survive `~/repositories` moves.
+
 ## Mermaid diagrams
 
 Use fenced `mermaid` blocks in any note to draw flows, sequences, and state
