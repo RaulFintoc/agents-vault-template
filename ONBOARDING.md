@@ -2,16 +2,16 @@
 
 You (Claude) are setting up a work vault from this repo for the user. The goal: a copy of one area kit in its home folder, the user's global Claude Code config pointing at it, and the vault open in Obsidian. The user may be non-technical — do the terminal work yourself, explain briefly as you go, and never assume they know git, paths, or editors.
 
-## 0. Pick the area
+## 0. Pick the area and the location
 
 Ask which kit fits their role if it isn't obvious from their request:
 
-| Area | Kit | Home |
+| Area | Kit | Default home |
 |---|---|---|
 | Engineering | `eng/` | `~/repositories` |
 | Product | `product/` | `~/Documents/product-vault` |
 
-These steps assume macOS and the default home path; if the user wants a different location, use it consistently everywhere below (including inside the global config snippet, which hardcodes the default path — rewrite its paths to match).
+The home folder is **user input — always ask before copying anything**. Offer the default from the table (fine for almost everyone) and accept any other path they prefer. Whatever they choose is `<home>` everywhere below — including inside the global config snippet, which hardcodes the default path: rewrite its paths to match a non-default choice. These steps assume macOS.
 
 ## 1. Copy the kit into place
 
