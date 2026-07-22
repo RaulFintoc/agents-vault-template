@@ -30,15 +30,17 @@ Follow the steps below in order.
 ### Step 1 — Put this folder in the right place
 
 This kit should live at `~/Documents/product-vault` (`~` means your home
-folder). However you received it (a download or a shared folder), move it there
-and name the folder `product-vault`.
-
-If it's sitting in your Downloads as `product-vault-template`, this command moves
-and renames it:
+folder). It ships as the `product/` folder of the `agents-vault-template`
+repo — these commands download it and put the copy in the right place:
 
 ```bash
-mv ~/Downloads/product-vault-template ~/Documents/product-vault
+git clone --depth 1 https://github.com/RaulFintoc/agents-vault-template /tmp/agents-vault-template
+cp -R /tmp/agents-vault-template/product ~/Documents/product-vault
+rm -rf /tmp/agents-vault-template
 ```
+
+(If you received the kit some other way — a download or a shared folder — just
+move it to `~/Documents` and name the folder `product-vault`.)
 
 ### Step 2 — Install Obsidian and open the vault
 

@@ -17,7 +17,7 @@ projects.
 ## Layout
 
 ```
-repositories/              ← workspace root (rename the clone here)
+repositories/              ← workspace root (a copy of this eng/ folder)
   AGENTS.md                ← workspace guide (cloning, conventions, how we work)
   CLAUDE.md                ← @AGENTS.md (Claude Code reads this)
   README.md                ← this file
@@ -36,12 +36,14 @@ repositories/              ← workspace root (rename the clone here)
 
 ## Setup
 
-1. **Clone** this repo as your workspace root:
+1. **Copy this `eng/` folder** to become your workspace root:
    ```bash
-   gh repo clone RaulFintoc/agents-vault-template ~/repositories
-   # or to a different path:
-   gh repo clone RaulFintoc/agents-vault-template ~/work/repositories
+   git clone --depth 1 https://github.com/RaulFintoc/agents-vault-template /tmp/agents-vault-template
+   cp -R /tmp/agents-vault-template/eng ~/repositories
+   rm -rf /tmp/agents-vault-template
    ```
+   (Use a different target path if you keep your repos elsewhere, e.g.
+   `~/work/repositories`.)
 
 2. **Open the vault in Obsidian**: File → Open vault → select the `agents/`
    folder inside your clone.
