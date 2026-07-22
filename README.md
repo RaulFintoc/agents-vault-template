@@ -1,105 +1,38 @@
 # agents-vault-template
 
-A barebones scaffold for a `~/repositories` workspace that pairs source-code
-repos with an Obsidian vault for running structured **projects** — investigations,
-plans, decisions, and documents — across multiple tickets.
+Starter kits for running your work with **Claude Code** and an **Obsidian vault** — one self-contained template per area. Pick the folder that matches your role, copy it to its home, and follow that folder's own `README.md`.
 
----
+| Area | Folder | Made for | Lives at |
+|---|---|---|---|
+| **Engineering** | [`eng/`](eng/) | Code repos + a vault of investigations, plans, and decisions across tickets | `~/repositories` |
+| **Product** | [`product/`](product/) | Specs, research, roadmap reviews, strategy, and meeting notes — no coding tools needed | `~/Documents/product-vault` |
 
-## What this is
-
-A clean starter with no real project data and no custom plugins. Clone it once
-to bootstrap the workspace layout, then add your own repos and start creating
-projects.
-
----
-
-## Layout
-
-```
-repositories/              ← workspace root (rename the clone here)
-  AGENTS.md                ← workspace guide (cloning, conventions, how we work)
-  CLAUDE.md                ← @AGENTS.md (Claude Code reads this)
-  README.md                ← this file
-  agents/                  ← Obsidian vault
-    AGENTS.md              ← vault guide (file naming, frontmatter, linking, Mermaid)
-    CLAUDE.md              ← @AGENTS.md
-    templates/             ← note templates (project, investigation, plan, decision)
-    scripts/
-      new-project.sh       ← scaffold a new project folder
-      archive.sh           ← archive finished projects into _archive/
-    projects/              ← one folder per project (ships empty)
-    .obsidian/             ← Obsidian config (core plugins only, default theme)
-```
-
----
-
-## Setup
-
-1. **Clone** this repo as your workspace root:
-   ```bash
-   gh repo clone RaulFintoc/agents-vault-template ~/repositories
-   # or to a different path:
-   gh repo clone RaulFintoc/agents-vault-template ~/work/repositories
-   ```
-
-2. **Open the vault in Obsidian**: File → Open vault → select the `agents/`
-   folder inside your clone.
-
-3. **No community plugins required.** Only Obsidian core plugins are configured.
-   Mermaid diagrams render natively.
-
-4. Optionally enable **Obsidian Sync** (Settings → Sync) to keep the vault
-   backed up and in sync across machines.
-
----
-
-## Usage
-
-### Scaffold a project
+## Getting started
 
 ```bash
-bash agents/scripts/new-project.sh <slug>
-bash agents/scripts/new-project.sh my-feature --tickets PROJ-1,PROJ-2
-bash agents/scripts/new-project.sh my-feature --tickets PROJ-3 --linear https://linear.app/...
+git clone --depth 1 https://github.com/RaulFintoc/agents-vault-template /tmp/agents-vault-template
+
+# Engineering:
+cp -R /tmp/agents-vault-template/eng ~/repositories
+
+# Product:
+cp -R /tmp/agents-vault-template/product ~/Documents/product-vault
+
+rm -rf /tmp/agents-vault-template
 ```
 
-This creates `agents/projects/YYYY-MM-<slug>/` with subfolders
-(`investigations/`, `plans/`, `decisions/`, `documents/`) and a pre-filled
-`<slug>_project.md` overview.
+Then open the copied folder's `README.md` and follow its setup steps (installing Obsidian, opening the vault, wiring up Claude Code).
 
-### Archive a finished project
+## What's in a template
 
-```bash
-bash agents/scripts/archive.sh <project>            # name or unique substring
-bash agents/scripts/archive.sh --dry-run <project>  # preview only
-```
+Each area folder is a complete kit: an `agents/` Obsidian vault (guide, note templates, scaffolding scripts, minimal `.obsidian/` config), workspace-level `AGENTS.md`/`CLAUDE.md` instructions that Claude Code reads automatically, and a `README.md` with the full setup walkthrough. The templates share the same core ideas — work is organized in **projects**, notes carry YAML frontmatter, wikilinks connect them — but each is tuned to its area's workflow and deliverables.
 
-This marks the project `status: archived` and moves its folder to
-`agents/_archive/`, where it stays searchable.
+Notes default to **English**; each vault's language is a one-line setting (English or Spanish) at the top of its `agents/AGENTS.md`.
 
-### Add a repo
+## Adding an area
 
-Clone repos at the workspace root alongside `agents/`:
+Want a vault for another area (design, ops, data)? Copy the closest existing folder, adapt its project types, templates, and guides, and open a PR adding it here.
 
-```bash
-gh repo clone <org>/<repo>
-```
+## Credits
 
-Then update the Repos table in the top-level `AGENTS.md` with a one-line
-description.
-
----
-
-## Further reading
-
-- **`AGENTS.md`** (workspace root) — how the workspace is organized, cloning
-  conventions, and how to decide between working directly in a repo vs. opening
-  a project in the vault.
-- **`agents/AGENTS.md`** (vault) — full vault guide: folder structure, file
-  naming, YAML frontmatter, Obsidian links/transclusion, Mermaid diagrams, and
-  the project lifecycle (start → archive).
-
----
-
-> `agents/projects/` ships empty by design. Add projects with `new-project.sh`.
+The `product/` template was authored by [@dmelberg](https://github.com/dmelberg) (imported from [dmelberg/product-vault-template](https://github.com/dmelberg/product-vault-template)).

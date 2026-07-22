@@ -8,11 +8,17 @@ and documents in one place.
 
 ## Language rule (critical)
 
-**All vault content must be written in English** — note bodies, titles,
+> **Vault language: English**
+
+The line above is the setting — change `English` to `Spanish` if you prefer
+your notes in Spanish. Pick one and keep the whole vault consistent.
+
+All vault content is written in the configured language — note bodies, titles,
 frontmatter values, investigations, plans, decisions, and document prose. This
-is a local knowledge base, not GitHub-facing content, so the Spanish rule for
-commits/PRs/issues does **not** apply here. Keep everything in English for
-consistency and searchability.
+is a local knowledge base, not GitHub-facing content, so team language rules
+for commits/PRs/issues do **not** apply here. Structural tokens stay in English
+regardless of the setting — frontmatter keys, `status:`/`type:` values, folder
+names, and template headings — so scripts, search, and queries keep working.
 
 ---
 
