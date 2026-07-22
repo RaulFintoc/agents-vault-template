@@ -43,6 +43,7 @@ agents/
   _archive/              # completed projects (same internal layout)
   scripts/
     new-project.sh       # scaffolds a new project folder
+    archive.sh           # archives finished project(s) into _archive/
 ```
 
 ---
@@ -231,9 +232,22 @@ give them descriptive names.
 
 ### Closing a project
 
-1. Set `status: archived` in `project.md` frontmatter.
-2. Move the whole project folder to `_archive/`:
-   ```bash
-   mv projects/YYYY-MM-<slug> _archive/
-   ```
-3. The internal structure stays intact — archived projects are still searchable.
+Use the script — it sets `status: archived` (and bumps `updated:` to today) in each
+project's `<slug>_project.md`, then moves the whole folder into `_archive/`. The
+internal structure stays intact, so archived projects are still searchable.
+
+```bash
+bash ~/repositories/agents/scripts/archive.sh <project> [<project> ...]
+```
+
+- `<project>` is a folder name or any **unique substring** of it (the `YYYY-MM-`
+  prefix is optional), so
+  `archive.sh my-feature 2026-07-another-project` works.
+- Add `--dry-run` to preview the resolved folders without moving anything.
+- It resolves all names first and **fails before moving anything** if a name is
+  ambiguous or unmatched, or if a folder of the same name already exists in
+  `_archive/` (it won't overwrite).
+
+Only the first-frontmatter `status:`/`updated:` lines are rewritten — a `status:`
+mention in the body is left alone. (Manual fallback, if ever needed: edit
+`status: archived` in the `<slug>_project.md`, then `mv projects/YYYY-MM-<slug> _archive/`.)
