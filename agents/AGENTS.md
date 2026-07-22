@@ -227,6 +227,28 @@ Rules:
 Use fenced `mermaid` blocks in any note to draw flows, sequences, and state
 diagrams. Obsidian renders them natively — no plugin required.
 
+### Authoring rules (parse errors are easy to hit)
+
+- **Line breaks inside labels: use `<br/>`, never `\n`.** Mermaid does not
+  interpret `\n` — it renders literally at best and breaks the parser at
+  worst. Wrong: `A[First line\nSecond line]`. Right:
+  `A["First line<br/>Second line"]`.
+- **Double-quote any label that isn't plain words.** Parentheses, square
+  brackets, colons, `#`, `>`, `→`, `+`, and a digit followed by a period
+  (`1.`) all break unquoted labels. Right:
+  `C["GCP alert policy (PromQL)<br/>increase(metric[1m]) > 0"]`.
+- **Never put a double quote inside a label** — there is no escaping inside
+  quoted labels. Rephrase, or use single quotes / italics instead.
+- **An edge label is one single (optionally quoted) string**:
+  `A -- "some label" --> B` or `A -->|some label| B`. Never mix quoted and
+  unquoted fragments in the same label
+  (`A -- text "quoted (text)" --> B` is the classic parse error).
+- Node IDs (`A`, `SRC`, ...) stay bare ASCII; all the special characters go
+  inside the quoted label.
+- Before saving, re-scan each diagram line for a `\n`, an unquoted special
+  character, or a stray `"` inside a label — these three cause nearly all
+  Obsidian "Error parsing Mermaid diagram" failures.
+
 **Flowchart example:**
 ```mermaid
 flowchart LR
