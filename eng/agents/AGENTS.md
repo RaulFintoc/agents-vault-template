@@ -103,7 +103,7 @@ related: []           # wikilinks to other notes, e.g. ["[[use-redis-for-idempot
 **`<slug>_project.md`** (the project overview)
 ```yaml
 owner: <name or @handle>
-repos: []             # repo names present in ~/repositories, e.g. [api, frontend]
+repos: []             # repo names from the workspace AGENTS.md Repos table, e.g. [api, frontend]
 linear_project: ""    # Linear project URL or ID
 status: active | paused | done | archived
 ```
@@ -226,7 +226,7 @@ Rules:
   `updated`, or a one-line note up top), and always name the symbol
   (method/action/class) as a stable anchor in case the line moved.
 - Use repo-root-relative paths, not absolute machine paths — they stay valid for
-  anyone who clones the repo and survive `~/repositories` moves.
+  anyone who clones the repo, wherever their clone lives.
 
 ## Mermaid diagrams
 
