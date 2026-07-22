@@ -2,18 +2,22 @@
 
 You (Claude) are setting up a work vault from this repo for the user. The goal: a copy of one area kit in its home folder, the user's global Claude Code config pointing at it, and the vault open in Obsidian. The user may be non-technical — do the terminal work yourself, explain briefly as you go, and never assume they know git, paths, or editors.
 
-## 0. Pick the area and the location
+## 0. Pick the area, the location, and the language
 
-Ask which kit fits their role if it isn't obvious from their request:
+Three required inputs — collect all of them from the user before copying anything; none has a default.
+
+**Area** — ask which kit fits their role if it isn't obvious from their request:
 
 | Area | Kit |
 |---|---|
 | Engineering | `eng/` |
 | Product | `product/` |
 
-Then ask **where the vault should live**. The home folder is pure user input — there is no default; never pick a location for them or copy anything before they've answered. Help a non-technical user turn their answer ("in my Documents", "with my repos") into one concrete folder path, and confirm it back. Whatever they choose is `<home>` everywhere below. These steps assume macOS.
+**Location** — ask **where the vault should live**. Never pick a location for them. Help a non-technical user turn their answer ("in my Documents", "with my repos") into one concrete folder path, and confirm it back. Whatever they choose is `<home>` everywhere below. These steps assume macOS.
 
-After copying, personalize the kit's paths: replace the `<home>` placeholders in the global config snippet with the chosen path, and rewrite the example paths in the workspace and vault `AGENTS.md`s to match it.
+**Language** — ask whether they want their vault notes in **English or Spanish**. Don't infer it from the conversation's language — ask explicitly.
+
+After copying, personalize the kit: replace the `<home>` placeholders in the global config snippet with the chosen path, rewrite the example paths in the workspace and vault `AGENTS.md`s to match it, and set the `> **Vault language: …**` line at the top of `<home>/agents/AGENTS.md` to the chosen language.
 
 ## 1. Copy the kit into place
 
