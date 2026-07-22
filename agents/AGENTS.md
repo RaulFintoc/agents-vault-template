@@ -6,6 +6,22 @@ and documents in one place.
 
 ---
 
+## Language rule (critical)
+
+**All vault content must be written in English** — note bodies, titles,
+frontmatter values, investigations, plans, decisions, and document prose. This
+is a local knowledge base, not GitHub-facing content, so the Spanish rule for
+commits/PRs/issues does **not** apply here. Keep everything in English for
+consistency and searchability.
+
+---
+
+## Prose formatting (no hard wrapping)
+
+Prose is **not** hard-wrapped — one line per paragraph/bullet, blank line between. This follows the global *Markdown Prose Formatting* rule; the vault is **no exception** to it. (Tables, fenced code, and Mermaid blocks are naturally multi-line — unaffected.)
+
+---
+
 ## Folder structure
 
 ```
