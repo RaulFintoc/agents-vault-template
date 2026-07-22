@@ -4,7 +4,7 @@
 <!--
   This is the GLOBAL instructions file for Claude Code. Copy it into
   ~/.claude/CLAUDE.md so Claude reads it at the start of EVERY session,
-  no matter which folder you're working in. See the README for how.
+  no matter which folder you're working in. See the repo's root README for how.
 
   Keep the agents-vault-template:begin/end marker lines — they let setup
   (or Claude, via ONBOARDING.md) update this block in place later instead

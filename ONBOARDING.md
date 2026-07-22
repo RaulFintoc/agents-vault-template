@@ -13,7 +13,7 @@ Ask which kit fits their role if it isn't obvious from their request:
 
 Then ask **where the vault should live**. The home folder is pure user input — there is no default; never pick a location for them or copy anything before they've answered. Help a non-technical user turn their answer ("in my Documents", "with my repos") into one concrete folder path, and confirm it back. Whatever they choose is `<home>` everywhere below. These steps assume macOS.
 
-After copying, personalize the kit's paths: replace the `<home>` placeholders in the kit `README.md` and the global config snippet with the chosen path, and rewrite the example paths in the workspace and vault `AGENTS.md`s to match it.
+After copying, personalize the kit's paths: replace the `<home>` placeholders in the global config snippet with the chosen path, and rewrite the example paths in the workspace and vault `AGENTS.md`s to match it.
 
 ## 1. Copy the kit into place
 
@@ -43,7 +43,7 @@ The kit ships its snippet at `<home>/setup/global-CLAUDE.md`, wrapped in `<!-- a
 ## 4. Verify and hand off
 
 - List what was created: the home folder, the vault path, and the updated `~/.claude/CLAUDE.md` (show the marker block so they can find it later).
-- Point them at the kit's own `README.md` and `agents/AGENTS.md` for everyday use.
+- Point them at the kit's `AGENTS.md` guides (workspace root and `agents/`) for everyday use.
 - Offer to scaffold their first project with `bash <home>/agents/scripts/new-project.sh <slug>` as a test run.
 
 ## Rules
