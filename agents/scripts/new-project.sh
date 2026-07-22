@@ -64,9 +64,9 @@ fi
 # ── create structure ─────────────────────────────────────────────────────────
 mkdir -p "$PROJECT_DIR"/{investigations,plans,decisions,documents}
 
-# ── populate project.md from template ───────────────────────────────────────
+# ── populate <slug>_project.md from template ─────────────────────────────────
 TEMPLATE="$TEMPLATES_DIR/project.md"
-TARGET="$PROJECT_DIR/project.md"
+TARGET="$PROJECT_DIR/${SLUG}_project.md"
 FULL_DATE="$(date +%Y-%m-%d)"
 TITLE="$(echo "$SLUG" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1')"
 
@@ -91,5 +91,5 @@ echo "    plans/            — agent plans    (copy + rename templates/plan.md)
 echo "    decisions/        — task decisions (copy + rename templates/decision.md)"
 echo "    documents/        — images, PDFs, references"
 echo ""
-echo "  Edit project.md to fill in goal, context, owner, and repos."
+echo "  Edit ${SLUG}_project.md to fill in goal, context, owner, and repos."
 echo ""

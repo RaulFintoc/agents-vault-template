@@ -27,6 +27,7 @@ repositories/              ← workspace root (rename the clone here)
     templates/             ← note templates (project, investigation, plan, decision)
     scripts/
       new-project.sh       ← scaffold a new project folder
+      archive.sh           ← archive finished projects into _archive/
     projects/              ← one folder per project (ships empty)
     .obsidian/             ← Obsidian config (core plugins only, default theme)
 ```
@@ -65,7 +66,17 @@ bash agents/scripts/new-project.sh my-feature --tickets PROJ-3 --linear https://
 
 This creates `agents/projects/YYYY-MM-<slug>/` with subfolders
 (`investigations/`, `plans/`, `decisions/`, `documents/`) and a pre-filled
-`project.md`.
+`<slug>_project.md` overview.
+
+### Archive a finished project
+
+```bash
+bash agents/scripts/archive.sh <project>            # name or unique substring
+bash agents/scripts/archive.sh --dry-run <project>  # preview only
+```
+
+This marks the project `status: archived` and moves its folder to
+`agents/_archive/`, where it stays searchable.
 
 ### Add a repo
 

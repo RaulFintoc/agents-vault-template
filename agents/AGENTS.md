@@ -6,6 +6,22 @@ and documents in one place.
 
 ---
 
+## Language rule (critical)
+
+**All vault content must be written in English** — note bodies, titles,
+frontmatter values, investigations, plans, decisions, and document prose. This
+is a local knowledge base, not GitHub-facing content, so the Spanish rule for
+commits/PRs/issues does **not** apply here. Keep everything in English for
+consistency and searchability.
+
+---
+
+## Prose formatting (no hard wrapping)
+
+Prose is **not** hard-wrapped — one line per paragraph/bullet, blank line between. This follows the global *Markdown Prose Formatting* rule; the vault is **no exception** to it. (Tables, fenced code, and Mermaid blocks are naturally multi-line — unaffected.)
+
+---
+
 ## Folder structure
 
 ```
@@ -14,19 +30,20 @@ agents/
   CLAUDE.md              # @AGENTS.md
   projects/
     YYYY-MM-<slug>/      # one folder per project
-      project.md         # overview + master frontmatter
+      <slug>_project.md  # overview + master frontmatter (e.g. mcp-movements_project.md)
       investigations/    # research notes, explorations, findings
       plans/             # plans handed to / produced by agents
       decisions/         # decisions made during the project
       documents/         # images, PDFs, human input, references
   templates/             # note templates — copy and rename when creating notes
-    project.md
+    project.md           # scaffolded by new-project.sh as <slug>_project.md
     investigation.md
     plan.md
     decision.md
   _archive/              # completed projects (same internal layout)
   scripts/
     new-project.sh       # scaffolds a new project folder
+    archive.sh           # archives finished project(s) into _archive/
 ```
 
 ---
@@ -35,6 +52,11 @@ agents/
 
 **Never use generic names like `investigation.md` or `decision.md`.** The folder
 already conveys the type. The filename must call out the **subject** of the note.
+
+The project overview note is no exception: name it **`<slug>_project.md`** —
+the project's folder slug (the `YYYY-MM-` prefix dropped) followed by the
+`_project.md` suffix, e.g. `mcp-movements_project.md`. `new-project.sh`
+creates it with this name; one per folder, unique vault-wide.
 
 Use descriptive, kebab-case names:
 
@@ -72,7 +94,7 @@ related: []           # wikilinks to other notes, e.g. ["[[use-redis-for-idempot
 
 ### Per-type additions
 
-**project.md**
+**`<slug>_project.md`** (the project overview)
 ```yaml
 owner: <name or @handle>
 repos: []             # repo names present in ~/repositories, e.g. [api, frontend]
@@ -112,11 +134,45 @@ file (or one file for tightly related decisions on the same day).
 |---|---|
 | `[[note-name]]` | Link to a note by filename (no extension) |
 | `[[note-name#Heading]]` | Link to a specific heading in a note |
+| `[[#Heading]]` | Link to a heading **in the same note** (no filename) |
 | `[[note-name\|label]]` | Link with a custom display label |
+| `[[#Heading\|label]]` | Same-note heading link with a custom label |
 
 Always use the descriptive filename (e.g. `[[use-redis-for-idempotency-keys]]`),
 not a generic one. Obsidian resolves vault-wide by filename; no path needed
-unless two notes share a name.
+unless two notes share a name. Project overviews are uniquely named per the
+`<slug>_project.md` convention, so link them by bare filename:
+`[[mcp-engine-deep-dive_project|label]]`. When two notes genuinely **do** share
+a name, disambiguate with a vault-relative path:
+`[[projects/2026-06-foo/note|label]]` — a bare `[[note]]` silently resolves to
+the wrong one.
+
+### Never link to memory files
+
+**Wikilinks must point only at notes inside this vault.** Do **not** `[[link]]`
+to agent memory files (the `~/.claude/.../memory/*.md` store — e.g.
+`[[user-preferences]]`, `[[project-payment-flows]]`). Memory lives
+outside the vault, so Obsidian can never resolve those links — they render as
+permanently broken. If you want to surface a fact that lives in memory, **write
+it into the note as prose** (and cite the source if useful), or link to a real
+vault note that covers it. The same applies to `related:` frontmatter — list only
+in-vault notes there.
+
+### Intra-document links — gotchas (don't write GitHub-style anchors)
+
+For jump links **within the same note** (e.g. a TL;DR pointing at a later
+section), use the Obsidian wikilink form `[[#Heading]]`, **not** the
+GitHub/Markdown anchor form `[label](#slugified-heading)`. Two reasons these
+bite:
+
+- **No slugs.** Obsidian resolves `#` links by the **exact heading text**, not a
+  lowercased-hyphenated slug. `[Slack history](#slack-history-bug-class)` is a
+  dead link; `[[#Slack history (bug class is recurring)|Slack history]]` works.
+  Copy the heading verbatim (parentheses and all) after the `#`.
+- **Escape the pipe inside tables.** A `|` is a table column separator, so the
+  alias pipe in a wikilink placed in a table cell must be escaped as `\|`:
+  `[[#Which callers actually hit the bug\|caller nuance]]`. Unescaped, it splits
+  the cell and breaks the table. (Outside tables, a plain `|` is fine.)
 
 ### Transclusion / embedding
 
@@ -146,10 +202,52 @@ This lets you filter all notes for a ticket via Obsidian search:
 
 ---
 
+## Referencing source code (read the vault side-by-side with the editor)
+
+Notes that explain or investigate code **must** cite their sources as
+`path/to/file.ext:line` (or `:start-end` for ranges), with the path **relative to
+the repo root** (e.g. `app/services/payments/retry_service.rb:74-96`).
+The goal: a reader can keep the note open next to VSCode and jump straight to the
+code (`Cmd+P` → paste path, `Ctrl+G` → line).
+
+Rules:
+
+- **Every quoted code block** gets a reference line immediately above it (or
+  inline `# -> file:line` comments inside the block when quoting several spots).
+- Prose that names a method, action, or class should anchor it with `file:line`
+  the first time it appears.
+- Line numbers drift. State the repo snapshot date once (the note's `created`/
+  `updated`, or a one-line note up top), and always name the symbol
+  (method/action/class) as a stable anchor in case the line moved.
+- Use repo-root-relative paths, not absolute machine paths — they stay valid for
+  anyone who clones the repo and survive `~/repositories` moves.
+
 ## Mermaid diagrams
 
 Use fenced `mermaid` blocks in any note to draw flows, sequences, and state
 diagrams. Obsidian renders them natively — no plugin required.
+
+### Authoring rules (parse errors are easy to hit)
+
+- **Line breaks inside labels: use `<br/>`, never `\n`.** Mermaid does not
+  interpret `\n` — it renders literally at best and breaks the parser at
+  worst. Wrong: `A[First line\nSecond line]`. Right:
+  `A["First line<br/>Second line"]`.
+- **Double-quote any label that isn't plain words.** Parentheses, square
+  brackets, colons, `#`, `>`, `→`, `+`, and a digit followed by a period
+  (`1.`) all break unquoted labels. Right:
+  `C["GCP alert policy (PromQL)<br/>increase(metric[1m]) > 0"]`.
+- **Never put a double quote inside a label** — there is no escaping inside
+  quoted labels. Rephrase, or use single quotes / italics instead.
+- **An edge label is one single (optionally quoted) string**:
+  `A -- "some label" --> B` or `A -->|some label| B`. Never mix quoted and
+  unquoted fragments in the same label
+  (`A -- text "quoted (text)" --> B` is the classic parse error).
+- Node IDs (`A`, `SRC`, ...) stay bare ASCII; all the special characters go
+  inside the quoted label.
+- Before saving, re-scan each diagram line for a `\n`, an unquoted special
+  character, or a stray `"` inside a label — these three cause nearly all
+  Obsidian "Error parsing Mermaid diagram" failures.
 
 **Flowchart example:**
 ```mermaid
@@ -198,21 +296,52 @@ bash ~/repositories/agents/scripts/new-project.sh <slug> \
 ```
 
 This creates `projects/YYYY-MM-<slug>/` with all subfolders and a pre-filled
-`project.md`. Add notes as work progresses — copy from `templates/` and give
-them descriptive names.
+`<slug>_project.md`. Add notes as work progresses — copy from `templates/` and
+give them descriptive names.
+
+### Set up the project *before* writing a plan (incl. the superpowers `writing-plans` skill)
+
+A plan is a project artifact — it must land in a project's `plans/` folder, not
+float on its own. So **scaffold the project first, then write the plan.**
+
+- The superpowers `writing-plans` / `brainstorming` skills default to saving
+  plans under `docs/superpowers/plans/<date>-<feature>.md` **inside the repo**.
+  That default is wrong for this vault — override it. Save the plan to
+  `projects/YYYY-MM-<slug>/plans/<descriptive-name>.md` instead (the skill
+  honours "user plan-location preferences override the default").
+- Before invoking the skill (or hand-writing any plan), check the work has a
+  project. If not, run `new-project.sh <slug> --tickets <IDs>` first, then point
+  the plan at that project's `plans/` folder.
+- **Never** create a bare `plans/` folder with no `<slug>_project.md` overview —
+  an orphan plan with no project frontmatter is not searchable or archivable the
+  normal way. If you catch yourself about to, scaffold the project and move the
+  plan in.
 
 ### During a project
 
 - Add notes to the right subfolder as work happens.
-- Keep `project.md` updated — especially `status`, `tickets`, and `repos`.
+- Keep the `<slug>_project.md` overview updated — especially `status`, `tickets`, and `repos`.
 - Log decisions as they are made (even small ones). Future context matters.
 - Embed or link supporting documents from `documents/`.
 
 ### Closing a project
 
-1. Set `status: archived` in `project.md` frontmatter.
-2. Move the whole project folder to `_archive/`:
-   ```bash
-   mv projects/YYYY-MM-<slug> _archive/
-   ```
-3. The internal structure stays intact — archived projects are still searchable.
+Use the script — it sets `status: archived` (and bumps `updated:` to today) in each
+project's `<slug>_project.md`, then moves the whole folder into `_archive/`. The
+internal structure stays intact, so archived projects are still searchable.
+
+```bash
+bash ~/repositories/agents/scripts/archive.sh <project> [<project> ...]
+```
+
+- `<project>` is a folder name or any **unique substring** of it (the `YYYY-MM-`
+  prefix is optional), so
+  `archive.sh my-feature 2026-07-another-project` works.
+- Add `--dry-run` to preview the resolved folders without moving anything.
+- It resolves all names first and **fails before moving anything** if a name is
+  ambiguous or unmatched, or if a folder of the same name already exists in
+  `_archive/` (it won't overwrite).
+
+Only the first-frontmatter `status:`/`updated:` lines are rewritten — a `status:`
+mention in the body is left alone. (Manual fallback, if ever needed: edit
+`status: archived` in the `<slug>_project.md`, then `mv projects/YYYY-MM-<slug> _archive/`.)
