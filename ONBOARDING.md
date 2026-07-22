@@ -6,12 +6,14 @@ You (Claude) are setting up a work vault from this repo for the user. The goal: 
 
 Ask which kit fits their role if it isn't obvious from their request:
 
-| Area | Kit | Default home |
-|---|---|---|
-| Engineering | `eng/` | `~/repositories` |
-| Product | `product/` | `~/Documents/product-vault` |
+| Area | Kit |
+|---|---|
+| Engineering | `eng/` |
+| Product | `product/` |
 
-The home folder is **user input — always ask before copying anything**. Offer the default from the table (fine for almost everyone) and accept any other path they prefer. Whatever they choose is `<home>` everywhere below — including inside the global config snippet, which hardcodes the default path: rewrite its paths to match a non-default choice. These steps assume macOS.
+Then ask **where the vault should live**. The home folder is pure user input — there is no default; never pick a location for them or copy anything before they've answered. Help a non-technical user turn their answer ("in my Documents", "with my repos") into one concrete folder path, and confirm it back. Whatever they choose is `<home>` everywhere below. These steps assume macOS.
+
+The kit's files hardcode example paths — the global config snippet, the workspace and vault `AGENTS.md`s, and the kit `README.md`. After copying, rewrite those path references to `<home>`.
 
 ## 1. Copy the kit into place
 
@@ -31,7 +33,7 @@ The kit ships its snippet at `<home>/setup/global-CLAUDE.md`, wrapped in `<!-- a
 - No `~/.claude/CLAUDE.md` yet → create it with the snippet's full contents (`mkdir -p ~/.claude` first).
 - File exists **without** this area's markers → append the snippet at the bottom, separated by a blank line. Never modify the user's existing content.
 - File exists **with** this area's markers → replace everything between (and including) the markers with the new snippet.
-- If the kit was copied somewhere non-default, rewrite the paths inside the snippet before installing it.
+- Rewrite the paths inside the snippet to `<home>` before installing it (the shipped snippet carries example paths).
 
 ## 3. Obsidian
 
