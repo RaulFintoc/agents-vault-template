@@ -10,25 +10,25 @@
   (or Claude, via ONBOARDING.md) update this block in place later instead
   of appending a duplicate.
 
-  Replace every <home> placeholder below with the folder you chose as your
-  workspace root during setup.
+  Replace every <path> placeholder below with the vault folder you chose
+  during setup.
 -->
 
-My engineering workspace lives at `<home>`: source repos are cloned at
-its root, and `<home>/agents/` is an Obsidian vault for running
-**projects** — investigations, plans, decisions, and documents that span
-tickets or repos.
+My engineering project vault lives at `<path>` — an Obsidian vault for
+running **projects**: investigations, plans, decisions, and documents that
+span tickets or repos. Source repos live in their own locations; the Repos
+index in `<path>/AGENTS.md` maps each repo name to its path.
 
 **At the start of every session, before substantive work:**
 
-1. **Read** `<home>/AGENTS.md` (workspace conventions) and
-   `<home>/agents/AGENTS.md` (vault guide) if the session hasn't
-   loaded them already — do this even when the working directory is elsewhere.
+1. **Read** `<path>/AGENTS.md` (repos index + conventions + vault guide) if
+   the session hasn't loaded it already — do this even when the working
+   directory is elsewhere.
 2. **Small, self-contained task?** Work directly in the repo.
 3. **Multi-ticket, cross-repo, or research-heavy task?** Open or create a
    project in the vault:
    ```bash
-   bash <home>/agents/scripts/new-project.sh <slug> [--tickets PROJ-1,PROJ-2]
+   bash <path>/scripts/new-project.sh <slug> [--tickets PROJ-1,PROJ-2]
    ```
    and file investigations, plans, and decisions there as the work happens,
    following the vault guide's naming and frontmatter conventions.
