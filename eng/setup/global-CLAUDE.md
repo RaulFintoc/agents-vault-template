@@ -10,14 +10,14 @@
   (or Claude, via ONBOARDING.md) update this block in place later instead
   of appending a duplicate.
 
-  Replace every <home> placeholder below with the folder you chose as your
-  workspace root during setup.
+  Replace every <home> placeholder below with the folder you chose for the
+  kit during setup.
 -->
 
-My engineering workspace lives at `<home>`: source repos are cloned at
-its root, and `<home>/agents/` is an Obsidian vault for running
-**projects** — investigations, plans, decisions, and documents that span
-tickets or repos.
+My engineering project vault lives at `<home>/agents/` — an Obsidian vault for
+running **projects**: investigations, plans, decisions, and documents that
+span tickets or repos. Source repos live in their own locations; the Repos
+table in `<home>/AGENTS.md` maps each repo name to its path.
 
 **At the start of every session, before substantive work:**
 
