@@ -25,6 +25,7 @@ rm -rf /tmp/agents-vault-template
 
 - If the home folder **already exists**, stop and show the user what's there before touching anything — never overwrite. If it's a previous copy of the kit, offer to add only the missing files; otherwise ask for a different target path.
 - The copy is intentionally **not** a git repo (no `.git` comes along) — don't `git init` it.
+- The kit is the vault + guides only. For **eng**, the user's existing code repos stay exactly where they are — never move or reclone them; they get *recorded*, not relocated (see step 4).
 
 ## 2. Install the global Claude Code config
 
@@ -44,6 +45,7 @@ The kit ships its snippet at `<home>/setup/global-CLAUDE.md`, wrapped in `<!-- a
 
 - List what was created: the home folder, the vault path, and the updated `~/.claude/CLAUDE.md` (show the marker block so they can find it later).
 - Point them at the kit's `AGENTS.md` guides (workspace root and `agents/`) for everyday use.
+- For **eng**, offer to fill the Repos table in `<home>/AGENTS.md` with the repos they already work on (name, path, one-line description) — that table is how future sessions find their code.
 - Offer to scaffold their first project with `bash <home>/agents/scripts/new-project.sh <slug>` as a test run.
 
 ## Rules

@@ -4,7 +4,7 @@ Starter kits for running your work with **Claude Code** and an **Obsidian vault*
 
 | Area | Folder | Made for |
 |---|---|---|
-| **Engineering** | [`eng/`](eng/) | Code repos + a vault of investigations, plans, and decisions across tickets |
+| **Engineering** | [`eng/`](eng/) | A vault of investigations, plans, and decisions across tickets — pairs with your code repos, wherever they live |
 | **Product** | [`product/`](product/) | Specs, research, roadmap reviews, strategy, and meeting notes — no coding tools needed |
 
 Where a kit lives is up to you — you pick the folder during setup; the docs call it `<home>`.
