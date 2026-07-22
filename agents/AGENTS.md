@@ -299,6 +299,24 @@ This creates `projects/YYYY-MM-<slug>/` with all subfolders and a pre-filled
 `<slug>_project.md`. Add notes as work progresses — copy from `templates/` and
 give them descriptive names.
 
+### Set up the project *before* writing a plan (incl. the superpowers `writing-plans` skill)
+
+A plan is a project artifact — it must land in a project's `plans/` folder, not
+float on its own. So **scaffold the project first, then write the plan.**
+
+- The superpowers `writing-plans` / `brainstorming` skills default to saving
+  plans under `docs/superpowers/plans/<date>-<feature>.md` **inside the repo**.
+  That default is wrong for this vault — override it. Save the plan to
+  `projects/YYYY-MM-<slug>/plans/<descriptive-name>.md` instead (the skill
+  honours "user plan-location preferences override the default").
+- Before invoking the skill (or hand-writing any plan), check the work has a
+  project. If not, run `new-project.sh <slug> --tickets <IDs>` first, then point
+  the plan at that project's `plans/` folder.
+- **Never** create a bare `plans/` folder with no `<slug>_project.md` overview —
+  an orphan plan with no project frontmatter is not searchable or archivable the
+  normal way. If you catch yourself about to, scaffold the project and move the
+  plan in.
+
 ### During a project
 
 - Add notes to the right subfolder as work happens.
