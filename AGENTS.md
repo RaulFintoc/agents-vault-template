@@ -47,6 +47,11 @@ with a short description of its role in your stack.
 
 - **Cloning** — always clone at the root of `~/repositories/`, not inside
   another repo or inside `agents/`.
+- **Worktrees** — git worktrees live inside the repo they belong to, under the
+  default `.claude/worktrees/` path (e.g.
+  `~/repositories/<repo>/.claude/worktrees/<branch>`). Never create them
+  as sibling directories at the workspace root — only full repo clones live
+  there.
 - **Secrets** — never put credentials, `.env` files, or tokens in the vault.
   The vault may be synced via Obsidian Sync.
 - **Vault internals** — do not commit or modify `agents/.obsidian/`; it is
