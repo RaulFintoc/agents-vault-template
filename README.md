@@ -27,6 +27,8 @@ Then open the copied folder's `README.md` and follow its setup steps (installing
 
 Each area folder is a complete kit: an `agents/` Obsidian vault (guide, note templates, scaffolding scripts, minimal `.obsidian/` config), workspace-level `AGENTS.md`/`CLAUDE.md` instructions that Claude Code reads automatically, and a `README.md` with the full setup walkthrough. The templates share the same core ideas — work is organized in **projects**, notes carry YAML frontmatter, wikilinks connect them — but each is tuned to its area's workflow and deliverables.
 
+Notes default to **English**; each vault's language is a one-line setting (English or Spanish) at the top of its `agents/AGENTS.md`.
+
 ## Adding an area
 
 Want a vault for another area (design, ops, data)? Copy the closest existing folder, adapt its project types, templates, and guides, and open a PR adding it here.

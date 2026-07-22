@@ -16,6 +16,21 @@ Code stays **outside** the vault (see repo handling in the workspace
 
 ---
 
+## Vault language
+
+> **Vault language: English**
+
+The line above is the setting — change `English` to `Spanish` if you prefer
+your notes in Spanish. Pick one and keep the whole vault consistent.
+
+All note content is written in the configured language — bodies, titles,
+frontmatter values, and deliverables. Structural tokens stay in English
+regardless of the setting — frontmatter keys, `status:`/`type:` values, folder
+names, and template headings — so search and the scaffolding scripts keep
+working.
+
+---
+
 ## Default working mode — every session is filed in a project
 
 Substantive work should be **captured in a project**, so the vault stays the
