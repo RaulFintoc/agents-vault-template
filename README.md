@@ -13,9 +13,9 @@ Where a kit lives — and what its folder is called — is up to you: you pick b
 
 If you already have [Claude Code](https://docs.claude.com/en/docs/claude-code) installed, skip the manual steps entirely: open Terminal, run `claude`, and paste
 
-> Set me up with the **product** vault from https://github.com/RaulFintoc/agents-vault-template — fetch its ONBOARDING.md and follow it.
+> Set me up with a work vault from https://github.com/RaulFintoc/agents-vault-template — fetch its ONBOARDING.md and follow it.
 
-(or **eng** for the engineering kit). Claude asks where you want the kit and in which language, copies it there, updates your global `~/.claude/CLAUDE.md` so every future session knows about the vault, and walks you through opening it in Obsidian.
+Claude asks which kit fits your role, where you want it (and what to call the folder), and in which language, then copies it there, updates your global `~/.claude/CLAUDE.md` so every future session knows about the vault, and walks you through opening it in Obsidian.
 
 ## Manual setup
 
